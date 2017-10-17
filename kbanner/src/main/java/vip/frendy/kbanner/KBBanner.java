@@ -76,6 +76,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
     private int mNumberIndicatorTextSize;
     private Drawable mNumberIndicatorBackground;
     private boolean mIsNeedShowIndicatorOnOnlyOnePage;
+    private boolean mIsNeedShowIndicator = true;
     private boolean mAllowUserScrollable = true;
     private View mSkipView;
     private View mEnterView;
@@ -528,7 +529,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
         if (mPointRealContainerLl != null) {
             mPointRealContainerLl.removeAllViews();
 
-            if (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)) {
+            if (mIsNeedShowIndicator && (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1))) {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
                 lp.setMargins(mPointLeftRightMargin, mPointTopBottomMargin, mPointLeftRightMargin, mPointTopBottomMargin);
                 ImageView imageView;
@@ -541,7 +542,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
             }
         }
         if (mNumberIndicatorTv != null) {
-            if (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)) {
+            if (mIsNeedShowIndicator && (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1))) {
                 mNumberIndicatorTv.setVisibility(View.VISIBLE);
             } else {
                 mNumberIndicatorTv.setVisibility(View.INVISIBLE);
@@ -660,6 +661,10 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
         mIsNeedShowIndicatorOnOnlyOnePage = isNeedShowIndicatorOnOnlyOnePage;
     }
 
+    public void setIsNeedShowIndicator(boolean isNeedShowIndicator) {
+        mIsNeedShowIndicator = isNeedShowIndicator;
+    }
+
     public void setCurrentItem(int item) {
         if (mViewPager == null || mViews == null || item > getItemCount() - 1) {
             return;
@@ -751,7 +756,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
         }
 
         if (mPointRealContainerLl != null) {
-            if (mViews != null && mViews.size() > 0 && newCurrentPoint < mViews.size() && ((mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)))) {
+            if (mViews != null && mViews.size() > 0 && newCurrentPoint < mViews.size() && (mIsNeedShowIndicator && (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)))) {
                 mPointRealContainerLl.setVisibility(View.VISIBLE);
                 for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
                     mPointRealContainerLl.getChildAt(i).setEnabled(i == newCurrentPoint);
@@ -764,7 +769,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
         }
 
         if (mNumberIndicatorTv != null) {
-            if (mViews != null && mViews.size() > 0 && newCurrentPoint < mViews.size() && ((mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)))) {
+            if (mViews != null && mViews.size() > 0 && newCurrentPoint < mViews.size() && (mIsNeedShowIndicator && (mIsNeedShowIndicatorOnOnlyOnePage || (!mIsNeedShowIndicatorOnOnlyOnePage && mViews.size() > 1)))) {
                 mNumberIndicatorTv.setVisibility(View.VISIBLE);
                 mNumberIndicatorTv.setText((newCurrentPoint + 1) + "/" + mViews.size());
             } else {

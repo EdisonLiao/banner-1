@@ -5,8 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
 import vip.frendy.kbanner.KBBanner
-import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by iiMedia on 2017/9/12.
@@ -23,26 +24,35 @@ class MainActivity: AppCompatActivity() {
             items.add(Item(DEFAULT_IMAGE, "TEST ${i}", "广告"))
         }
 
-        banner.setAdapter(KBBanner.Adapter<ImageView, String> { banner, view, image, position ->
-            view.loadImage(image)
-        })
-
-        banner.setDelegate(KBBanner.Delegate<ImageView, String> { banner, view, image, position ->
-
-        })
-
         val images = ArrayList<String>()
         val titles = ArrayList<String>()
         val labels = ArrayList<String>()
+        val res = arrayListOf<Int>(R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+
         for (item in items) {
             images.add(item.image)
             titles.add(item.title)
             labels.add(item.label)
         }
-        banner.setData(images, titles, labels)
-    }
 
-    fun ImageView.loadImage(url: String) {
-        Glide.with(context).load(url).centerCrop().into(this)
+
+        banner.setAdapter(KBBanner.Adapter<ImageView, String> { banner, view, image, position ->
+            Glide.with(this).load(image).centerCrop().into(view)
+        })
+        banner.setDelegate(KBBanner.Delegate<ImageView, String> { banner, view, image, position ->
+
+        })
+        banner.setData(images, titles, labels)
+
+
+        banner2.setAdapter(KBBanner.Adapter<ImageView, Int> { banner, view, imageId, position ->
+            Glide.with(this).load(imageId).centerCrop().into(view)
+        })
+        banner2.setDelegate(KBBanner.Delegate<ImageView, Int> { banner, view, imageId, position ->
+            toast("Image Pos = $position")
+        })
+        banner2.setAutoPlayAble(false)
+        banner2.setIsNeedShowIndicator(false)
+        banner2.setData(res, null, null)
     }
 }

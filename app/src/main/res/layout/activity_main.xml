@@ -16,4 +16,10 @@
         app:banner_tipTextSize="12sp"
         app:banner_transitionEffect="accordion"/>
 
+    <vip.frendy.kbanner.KBBanner
+        android:id="@+id/banner2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        app:banner_pointContainerBackground="@android:color/transparent" />
 </LinearLayout>
