@@ -52,7 +52,6 @@ class MainActivity: AppCompatActivity() {
             toast("Image Pos = $position")
         })
         banner2.setAutoPlayAble(false)
-        banner2.setIsNeedShowIndicator(false)
         banner2.setData(res, null, null)
     }
 }

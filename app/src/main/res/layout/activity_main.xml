@@ -21,5 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
+        app:banner_isNeedShowIndicator="false"
         app:banner_pointContainerBackground="@android:color/transparent" />
 </LinearLayout>

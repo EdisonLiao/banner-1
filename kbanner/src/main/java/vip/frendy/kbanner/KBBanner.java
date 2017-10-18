@@ -176,6 +176,8 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
             mNumberIndicatorBackground = typedArray.getDrawable(attr);
         } else if (attr == R.styleable.KBBanner_banner_isNeedShowIndicatorOnOnlyOnePage) {
             mIsNeedShowIndicatorOnOnlyOnePage = typedArray.getBoolean(attr, mIsNeedShowIndicatorOnOnlyOnePage);
+        } else if (attr == R.styleable.KBBanner_banner_isNeedShowIndicator) {
+            mIsNeedShowIndicator = typedArray.getBoolean(attr, mIsNeedShowIndicator);
         } else if (attr == R.styleable.KBBanner_banner_contentBottomMargin) {
             mContentBottomMargin = typedArray.getDimensionPixelSize(attr, mContentBottomMargin);
         } else if (attr == R.styleable.KBBanner_android_scaleType) {

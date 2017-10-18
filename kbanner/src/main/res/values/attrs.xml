@@ -58,6 +58,8 @@
         <attr name="banner_numberIndicatorBackground" format="reference"/>
         <!-- 当只有一页数据时是否显示指示器，默认值为 false -->
         <attr name="banner_isNeedShowIndicatorOnOnlyOnePage" format="boolean"/>
+        <!-- 是否显示指示器，默认值为 true -->
+        <attr name="banner_isNeedShowIndicator" format="boolean"/>
         <!-- 自动轮播区域距离 BGABanner 底部的距离 -->
         <attr name="banner_contentBottomMargin" format="dimension"/>
         <!-- 占位图缩放模式 -->
