@@ -82,6 +82,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
     private View mEnterView;
     private GuideDelegate mGuideDelegate;
     private int mContentBottomMargin;
+    private int mContentRightMargin, mContentLeftMargin;
     private boolean mIsFirstInvisible = true;
 
     private static final ImageView.ScaleType[] sScaleTypeArray = {
@@ -127,6 +128,8 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
         mNumberIndicatorTextSize = KBBannerUtil.sp2px(context, 10);
 
         mContentBottomMargin = 0;
+        mContentRightMargin = KBBannerUtil.dp2px(context, 16);
+        mContentLeftMargin = KBBannerUtil.dp2px(context, 16);
     }
 
     private void initCustomAttrs(Context context, AttributeSet attrs) {
@@ -180,6 +183,10 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
             mIsNeedShowIndicator = typedArray.getBoolean(attr, mIsNeedShowIndicator);
         } else if (attr == R.styleable.KBBanner_banner_contentBottomMargin) {
             mContentBottomMargin = typedArray.getDimensionPixelSize(attr, mContentBottomMargin);
+        } else if (attr == R.styleable.KBBanner_banner_contentRightMargin) {
+            mContentRightMargin = typedArray.getDimensionPixelSize(attr, mContentRightMargin);
+        } else if (attr == R.styleable.KBBanner_banner_contentLeftMargin) {
+            mContentLeftMargin = typedArray.getDimensionPixelSize(attr, mContentLeftMargin);
         } else if (attr == R.styleable.KBBanner_android_scaleType) {
             final int index = typedArray.getInt(attr, -1);
             if (index >= 0 && index < sScaleTypeArray.length) {
@@ -419,6 +426,23 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
     }
 
     /**
+     * 设置每一页的控件集合
+     *
+     * @param views 每一页的控件集合
+     */
+    public void setViews(List<View> views) {
+        mViews = new ArrayList<>(views);
+        if (mAutoPlayAble && mViews.size() < 3) {
+            mHackyViews = new ArrayList<>(mViews);
+            mHackyViews.add(views.get(0));
+            if (mHackyViews.size() == 2) {
+                mHackyViews.add(views.get(0));
+            }
+        }
+        setData(mViews, null, null, null);
+    }
+
+    /**
      * 设置是否允许用户手指滑动
      *
      * @param allowUserScrollable true表示允许跟随用户触摸滑动，false反之
@@ -568,7 +592,13 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
         setPageChangeDuration(mPageChangeDuration);
 
         LayoutParams layoutParams = new LayoutParams(RMP, RMP);
-        layoutParams.setMargins(0, 0, 0, mContentBottomMargin);
+        if(mTransitionEffect == TransitionEffect.MZ) {
+            mViewPager.setClipChildren(false);
+            setClipChildren(false);
+            layoutParams.setMargins(mContentLeftMargin, 0, mContentRightMargin, mContentBottomMargin);
+        } else {
+            layoutParams.setMargins(0, 0, 0, mContentBottomMargin);
+        }
         addView(mViewPager, 0, layoutParams);
 
         if (mEnterView != null || mSkipView != null) {

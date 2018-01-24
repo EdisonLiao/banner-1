@@ -2,6 +2,7 @@ package vip.frendy.demobanner
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,7 +28,11 @@ class MainActivity: AppCompatActivity() {
         val images = ArrayList<String>()
         val titles = ArrayList<String>()
         val labels = ArrayList<String>()
-        val res = arrayListOf<Int>(R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+        val views = arrayListOf<View>(
+                View.inflate(this, R.layout.item_banner, null),
+                View.inflate(this, R.layout.item_banner, null),
+                View.inflate(this, R.layout.item_banner, null),
+                View.inflate(this, R.layout.item_banner, null))
 
         for (item in items) {
             images.add(item.image)
@@ -45,13 +50,14 @@ class MainActivity: AppCompatActivity() {
         banner.setData(images, titles, labels)
 
 
-        banner2.setAdapter(KBBanner.Adapter<ImageView, Int> { banner, view, imageId, position ->
-            Glide.with(this).load(imageId).centerCrop().into(view)
+        banner2.setAdapter(KBBanner.Adapter<View, Int> { banner, view, imageId, position ->
+            val imageView = view.findViewById(R.id.image) as ImageView
+            Glide.with(this).load(R.mipmap.ic_launcher).centerCrop().into(imageView)
         })
-        banner2.setDelegate(KBBanner.Delegate<ImageView, Int> { banner, view, imageId, position ->
+        banner2.setDelegate(KBBanner.Delegate<View, Int> { banner, view, imageId, position ->
             toast("Image Pos = $position")
         })
-        banner2.setAutoPlayAble(false)
-        banner2.setData(res, null, null)
+        banner2.setAutoPlayAble(true)
+        banner2.setViews(views)
     }
 }

@@ -20,7 +20,11 @@
         android:id="@+id/banner2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="24dp"
         android:scaleType="fitXY"
+        app:banner_transitionEffect="MZ"
+        app:banner_contentLeftMargin="16dp"
+        app:banner_contentRightMargin="16dp"
         app:banner_isNeedShowIndicator="false"
         app:banner_pointContainerBackground="@android:color/transparent" />
 </LinearLayout>

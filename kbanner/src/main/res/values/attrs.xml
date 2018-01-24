@@ -41,6 +41,7 @@
             <enum name="stack" value="10"/>
             <enum name="depth" value="11"/>
             <enum name="zoom" value="12"/>
+            <enum name="MZ" value="13"/>
         </attr>
         <!-- 提示文案的文字颜色 -->
         <attr name="banner_tipTextColor" format="reference|color"/>
@@ -62,6 +63,8 @@
         <attr name="banner_isNeedShowIndicator" format="boolean"/>
         <!-- 自动轮播区域距离 BGABanner 底部的距离 -->
         <attr name="banner_contentBottomMargin" format="dimension"/>
+        <attr name="banner_contentRightMargin" format="dimension"/>
+        <attr name="banner_contentLeftMargin" format="dimension"/>
         <!-- 占位图缩放模式 -->
         <attr name="android:scaleType"/>
     </declare-styleable>

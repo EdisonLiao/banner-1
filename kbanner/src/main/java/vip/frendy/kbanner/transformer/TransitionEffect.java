@@ -13,5 +13,6 @@ public enum TransitionEffect {
     ZoomStack,
     Stack,
     Depth,
-    Zoom
+    Zoom,
+    MZ
 }
