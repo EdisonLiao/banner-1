@@ -11,10 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
-        app:banner_indicatorGravity="bottom|right"
-        app:banner_pageChangeDuration="1500"
-        app:banner_tipTextSize="12sp"
-        app:banner_transitionEffect="accordion"/>
+        app:banner_indicatorGravity="bottom"
+        app:banner_pointAutoPlayAble="false"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_contentBottomMargin="24dp"
+        app:banner_contentLeftMargin="45dp"
+        app:banner_contentRightMargin="45dp"
+        app:banner_transitionEffect="clip"/>
 
     <vip.frendy.kbanner.KBBanner
         android:id="@+id/banner2"

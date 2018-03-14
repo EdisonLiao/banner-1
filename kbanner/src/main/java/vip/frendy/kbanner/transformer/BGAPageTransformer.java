@@ -60,6 +60,8 @@ public abstract class BGAPageTransformer implements ViewPager.PageTransformer {
                 return new ZoomPageTransformer();
             case MZ:
                 return new ZoomPageTransformer();
+            case Clip:
+                return new DefaultPageTransformer();
             default:
                 return new DefaultPageTransformer();
         }

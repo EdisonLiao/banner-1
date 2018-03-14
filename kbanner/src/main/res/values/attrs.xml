@@ -42,6 +42,7 @@
             <enum name="depth" value="11"/>
             <enum name="zoom" value="12"/>
             <enum name="MZ" value="13"/>
+            <enum name="clip" value="14"/>
         </attr>
         <!-- 提示文案的文字颜色 -->
         <attr name="banner_tipTextColor" format="reference|color"/>

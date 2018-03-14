@@ -596,6 +596,10 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
             mViewPager.setClipChildren(false);
             setClipChildren(false);
             layoutParams.setMargins(mContentLeftMargin, 0, mContentRightMargin, mContentBottomMargin);
+        } else if(mTransitionEffect == TransitionEffect.Clip) {
+            mViewPager.setClipChildren(false);
+            setClipChildren(false);
+            layoutParams.setMargins(mContentLeftMargin, 0, mContentRightMargin, mContentBottomMargin);
         } else {
             layoutParams.setMargins(0, 0, 0, mContentBottomMargin);
         }

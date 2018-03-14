@@ -47,7 +47,7 @@ class MainActivity: AppCompatActivity() {
         banner.setDelegate(KBBanner.Delegate<ImageView, String> { banner, view, image, position ->
 
         })
-        banner.setData(images, titles, labels)
+        banner.setData(images, null, null)
 
 
         banner2.setAdapter(KBBanner.Adapter<View, Int> { banner, view, imageId, position ->
