@@ -702,6 +702,10 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
     }
 
     public void setCurrentItem(int item) {
+        setCurrentItem(item, false);
+    }
+
+    public void setCurrentItem(int item, boolean smoothScroll) {
         if (mViewPager == null || mViews == null || item > getItemCount() - 1) {
             return;
         }
@@ -724,7 +728,7 @@ public class KBBanner extends RelativeLayout implements KBViewPager.AutoPlayDele
 
             startAutoPlay();
         } else {
-            mViewPager.setCurrentItem(item, false);
+            mViewPager.setCurrentItem(item, smoothScroll);
         }
     }
 
